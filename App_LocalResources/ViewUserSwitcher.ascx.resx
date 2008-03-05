@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Anonymous.Text" xml:space="preserve">
+    <value>Anonymous User</value>
+  </data>
   <data name="ModuleHelp.Text" xml:space="preserve">
     <value>&lt;p class="normalRed"&gt;This is a user switcher module. Only to be used in development environments! Please delete the module if the site goes live!&lt;/p&gt;</value>
   </data>

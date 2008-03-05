@@ -78,7 +78,7 @@ Namespace Apollo.DNN.Modules.UserSwitcher
                             cboUsers.Items.Insert(0, New ListItem(hostUser.Username, hostUser.UserID))
                         Next
                     End If
-                    cboUsers.Items.Insert(0, New ListItem(Localization.GetString("NoneSelected", LocalResourceFile), Null.NullInteger.ToString))
+                    cboUsers.Items.Insert(0, New ListItem(Localization.GetString("Anonymous", LocalResourceFile), Null.NullInteger.ToString))
 
                     If (Not IncludeHostUser) And UserInfo.IsSuperUser Then
                         cboUsers.SelectedIndex = 0
@@ -99,23 +99,27 @@ Namespace Apollo.DNN.Modules.UserSwitcher
         ''' <param name="e"></param>
         ''' <remarks></remarks>
         Protected Sub cboUsers_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboUsers.SelectedIndexChanged
-            If (cboUsers.SelectedValue <> Me.UserId) AndAlso (cboUsers.SelectedValue <> Null.NullInteger.ToString) Then
-                Dim MyUserInfo As UserInfo = UserController.GetUser(PortalId, cboUsers.SelectedValue, False)
-                If Not MyUserInfo Is Nothing Then
-                    'Remove user from cache
-                    If Page.User IsNot Nothing Then
-                        DataCache.ClearUserCache(Me.PortalSettings.PortalId, Context.User.Identity.Name)
+            If (cboUsers.SelectedValue <> Me.UserId) Then
+                If (cboUsers.SelectedValue = Null.NullInteger.ToString) Then
+                    Response.Redirect(NavigateURL("LogOff"))
+                Else
+                    Dim MyUserInfo As UserInfo = UserController.GetUser(PortalId, cboUsers.SelectedValue, False)
+                    If Not MyUserInfo Is Nothing Then
+                        'Remove user from cache
+                        If Page.User IsNot Nothing Then
+                            DataCache.ClearUserCache(Me.PortalSettings.PortalId, Context.User.Identity.Name)
+                        End If
+
+                        ' sign current user out
+                        Dim objPortalSecurity As New PortalSecurity
+                        objPortalSecurity.SignOut()
+
+                        ' sign new user in
+                        UserController.UserLogin(PortalId, MyUserInfo, PortalSettings.PortalName, Request.UserHostAddress, False)
+
+                        ' redirect to current url
+                        Response.Redirect(Request.RawUrl, True)
                     End If
-
-                    ' sign current user out
-                    Dim objPortalSecurity As New PortalSecurity
-                    objPortalSecurity.SignOut()
-
-                    ' sign new user in
-                    UserController.UserLogin(PortalId, MyUserInfo, PortalSettings.PortalName, Request.UserHostAddress, False)
-
-                    ' redirect to current url
-                    Response.Redirect(Request.RawUrl, True)
                 End If
 
             End If
