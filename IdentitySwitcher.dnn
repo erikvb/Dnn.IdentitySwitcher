@@ -1,15 +1,15 @@
-<dotnetnuke version="3.0" type="Module">
+﻿<dotnetnuke version="3.0" type="Module">
 	<folders>
 		<folder>
 			<name>IdentitySwitcher</name>
 			<friendlyname>IdentitySwitcher</friendlyname>
 			<foldername>IdentitySwitcher</foldername>
 			<modulename>IdentitySwitcher</modulename>
-			<description>IdentitySwitcher is a module that allows for easy switching between different portal identities. This is extremely usefull during site development. NB: Please do not use this module on a live website, as it will make your site very unsecure!</description>
-			<version>01.01.00</version>
-			<businesscontrollerclass>
-			</businesscontrollerclass>
-			<modules>
+			<description>IdentitySwitcher is a module that allows for easy switching between different portal identities. This is extremely usefull during site development. NB:using this module on your own site might have security implications. Please think before you act!</description>
+            <compatibleversions>04.06.02|(04.0[7-9]{1}).[0-9]{2}</compatibleversions>
+            <version>02.00.00</version>
+            <resourcefile>resources.zip</resourcefile>
+            <modules>
 				<module>
 					<friendlyname>IdentitySwitcher</friendlyname>
 					<cachetime>-1</cachetime>
@@ -30,24 +30,7 @@
 			</modules>
 			<files>
 				<file>
-					<path>App_LocalResources</path>
-					<name>Settings.ascx.resx</name>
-				</file>
-				<file>
-					<path>App_LocalResources</path>
-					<name>ViewIdentitySwitcher.ascx.resx</name>
-				</file>
-				<file>
-					<name>Settings.ascx</name>
-				</file>
-				<file>
-					<name>Settings.ascx.vb</name>
-				</file>
-				<file>
-					<name>ViewIdentitySwitcher.ascx</name>
-				</file>
-				<file>
-					<name>ViewIdentitySwitcher.ascx.vb</name>
+					<name>interApps.DNN.Modules.IdentitySwitcher.dll</name>
 				</file>
 			</files>
 		</folder>

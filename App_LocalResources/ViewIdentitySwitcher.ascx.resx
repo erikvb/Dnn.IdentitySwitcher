@@ -126,7 +126,82 @@
   <data name="NoneSelected.Text" xml:space="preserve">
     <value>[None Selected]</value>
   </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Filter:</value>
+  </data>
   <data name="SwitchToIdentity.Text" xml:space="preserve">
-    <value>Switch to user:</value>
+    <value>Switch to:</value>
+  </data>
+  <data name="Biography.Text" xml:space="preserve">
+    <value>Biografie</value>
+  </data>
+  <data name="Cell.Text" xml:space="preserve">
+    <value>GSM</value>
+  </data>
+  <data name="City.Text" xml:space="preserve">
+    <value>Plaats</value>
+  </data>
+  <data name="cmdSearch.Text" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="cmdSwitch.Text" xml:space="preserve">
+    <value>Switch identity</value>
+  </data>
+  <data name="Country.Text" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Fax.Text" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="FirstName.Text" xml:space="preserve">
+    <value>Achternaam</value>
+  </data>
+  <data name="IM.Text" xml:space="preserve">
+    <value>IM</value>
+  </data>
+  <data name="LastName.Text" xml:space="preserve">
+    <value>Achternaam</value>
+  </data>
+  <data name="MiddleName.Text" xml:space="preserve">
+    <value>Tweede naam</value>
+  </data>
+  <data name="PostalCode.Text" xml:space="preserve">
+    <value>Postcode</value>
+  </data>
+  <data name="PreferredLocale.Text" xml:space="preserve">
+    <value>Voorkeurstaal</value>
+  </data>
+  <data name="Prefix.Text" xml:space="preserve">
+    <value>Voorvoegsel</value>
+  </data>
+  <data name="Region.Text" xml:space="preserve">
+    <value>Regio</value>
+  </data>
+  <data name="Street.Text" xml:space="preserve">
+    <value>Straat</value>
+  </data>
+  <data name="Suffix.Text" xml:space="preserve">
+    <value>Achtervoegsel</value>
+  </data>
+  <data name="Telephone.Header" xml:space="preserve">
+    <value>Telefoon</value>
+  </data>
+  <data name="Telephone.Text" xml:space="preserve">
+    <value>Telefoon</value>
+  </data>
+  <data name="TimeZone.Text" xml:space="preserve">
+    <value>Tijdzone</value>
+  </data>
+  <data name="Unit.Text" xml:space="preserve">
+    <value>Eenheid</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Gebruikersnaam</value>
+  </data>
+  <data name="Website.Text" xml:space="preserve">
+    <value>Website</value>
   </data>
 </root>

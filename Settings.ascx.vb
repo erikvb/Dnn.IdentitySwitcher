@@ -24,8 +24,9 @@
 
 Imports DotNetNuke
 Imports System.Web.UI
+Imports DotNetNuke.Entities.Modules
 
-Namespace Apollo.DNN.Modules.UserSwitcher
+Namespace interApps.DNN.Modules.IdentitySwitcher
 
     ''' -----------------------------------------------------------------------------
     ''' <summary>
@@ -58,7 +59,12 @@ Namespace Apollo.DNN.Modules.UserSwitcher
                             Me.cbIncludeHostUser.Checked = Boolean.Parse(TabModuleSettings("includeHost"))
                         End If
                     Else
-                        tblDesignTable.Visible = False
+                        trHostSettings.Visible = False
+                    End If
+                    If TabModuleSettings.Contains("useAjax") Then
+                        Me.cbUseAjax.Checked = Boolean.Parse(TabModuleSettings("useAjax"))
+                    Else
+                        Me.cbUseAjax.Checked = True
                     End If
                 End If
             Catch exc As Exception           'Module failed to load
@@ -81,8 +87,9 @@ Namespace Apollo.DNN.Modules.UserSwitcher
                 If UserInfo.IsSuperUser Then
                     objModules.UpdateTabModuleSetting(TabModuleId, "includeHost", Me.cbIncludeHostUser.Checked.ToString)
                 End If
+                objModules.UpdateTabModuleSetting(TabModuleId, "useAjax", Me.cbUseAjax.Checked.ToString)
                 ' refresh cache
-                SynchronizeModule()
+                ModuleController.SynchronizeModule(ModuleId)
             Catch exc As Exception           'Module failed to load
                 ProcessModuleLoadException(Me, exc)
             End Try

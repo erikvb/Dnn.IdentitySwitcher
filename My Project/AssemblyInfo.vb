@@ -1,0 +1,34 @@
+Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("IdentitySwitcher")> 
+<Assembly: AssemblyDescription("IdentitySwitcher is a module that allows for easy switching between different portal identities. This is extremely usefull during site development. NB:using this module on your own site might have security implications. Please think before you act!")> 
+<Assembly: AssemblyCompany("http://www.interapps.nl")> 
+<Assembly: AssemblyProduct("IdentitySwitcher")> 
+<Assembly: AssemblyCopyright("Copyright ?  2009")> 
+<Assembly: AssemblyTrademark("interApps")> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("e32aac77-59ca-4e1a-b422-44c309552c55")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+
+<Assembly: AssemblyVersion("2.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> 
