@@ -124,6 +124,12 @@
     <value>Include the host users in the dropdown list. Caution: doing so will give non host users the option to log on as host user</value>
   </data>
   <data name="ControlTitle_settings.Text" xml:space="preserve">
-    <value>UserSwitcher Settings</value>
+    <value>IdentitySwitcher Settings</value>
+  </data>
+  <data name="plUseAjax.Help" xml:space="preserve">
+    <value>When this option is selected, searching in the form is done with callbacks instead of postbacks</value>
+  </data>
+  <data name="plUseAjax.Text" xml:space="preserve">
+    <value>Use Ajax</value>
   </data>
 </root>

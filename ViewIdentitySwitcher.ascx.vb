@@ -25,8 +25,11 @@ Imports DotNetNuke
 Imports System.Web.UI
 Imports System.Collections.Generic
 Imports System.Reflection
+Imports DotNetNuke.Entities.Users
+Imports DotNetNuke.Entities.Profile
+Imports DotNetNuke.Security.Roles
 
-Namespace Apollo.DNN.Modules.IdentitySwitcher
+Namespace interApps.DNN.Modules.IdentitySwitcher
 
     ''' -----------------------------------------------------------------------------
     ''' <summary>
@@ -39,6 +42,8 @@ Namespace Apollo.DNN.Modules.IdentitySwitcher
     ''' -----------------------------------------------------------------------------
     Partial Class ViewIdentitySwitcher
         Inherits Entities.Modules.PortalModuleBase
+
+#Region " Private Properties"
 
         ''' <summary>
         ''' reads the setting for inclusion of the host user. This setting defaults to false
@@ -56,6 +61,87 @@ Namespace Apollo.DNN.Modules.IdentitySwitcher
             End Get
         End Property
 
+        Private ReadOnly Property UseAjax() As Boolean
+            Get
+                Dim bRetValue As Boolean = True
+                If Settings.Contains("useAjax") Then
+                    Boolean.TryParse(Settings("useAjax"), bRetValue)
+                End If
+                Return bRetValue
+            End Get
+        End Property
+#End Region
+
+
+#Region " Private Methods"
+
+        Private Function AddSearchItem(ByVal name As String) As ListItem
+            Dim propertyName As String = Null.NullString
+            If Not Request.QueryString("filterProperty") Is Nothing Then
+                propertyName = Request.QueryString("filterProperty")
+            End If
+
+            Dim text As String = Localization.GetString(name, Me.LocalResourceFile)
+            If text = "" Then text = name
+            Dim li As ListItem = New ListItem(text, name)
+            If name = propertyName Then
+                li.Selected = True
+            End If
+            Return li
+        End Function
+
+        Private Sub BindSearchOptions()
+            ddlSearchType.Items.Add(AddSearchItem("RoleName"))
+            ddlSearchType.Items.Add(AddSearchItem("Email"))
+            ddlSearchType.Items.Add(AddSearchItem("Username"))
+            Dim profileProperties As ProfilePropertyDefinitionCollection = ProfileController.GetPropertyDefinitionsByPortal(PortalId, False)
+
+            For Each definition As ProfilePropertyDefinition In profileProperties
+                ddlSearchType.Items.Add(AddSearchItem(definition.PropertyName))
+            Next
+        End Sub
+
+        Private Sub LoadDefaultUsers()
+            If IncludeHostUser Then
+                Dim arHostUsers As ArrayList = UserController.GetUsers(Null.NullInteger)
+                For Each hostUser As UserInfo In arHostUsers
+                    cboUsers.Items.Insert(0, New ListItem(hostUser.Username, hostUser.UserID))
+                Next
+            End If
+            cboUsers.Items.Insert(0, New ListItem(Localization.GetString("Anonymous", LocalResourceFile), Null.NullInteger.ToString))
+        End Sub
+
+        Private Sub LoadAllUsers()
+            cboUsers.DataSource = UserController.GetUsers(PortalId)
+            cboUsers.DataBind()
+
+            LoadDefaultUsers()
+        End Sub
+
+        Private Sub Filter(ByVal SearchText As String, ByVal SearchField As String)
+            Dim users As ArrayList
+            Dim total As Integer = 0
+
+            Select Case SearchField
+                Case "Email"
+                    users = UserController.GetUsersByEmail(PortalId, False, SearchText + "%", -1, -1, total)
+                Case "Username"
+                    users = UserController.GetUsersByUserName(PortalId, False, SearchText + "%", -1, -1, total)
+                Case "RoleName"
+                    Dim objRolecontroller As New RoleController
+                    users = objRolecontroller.GetUsersByRoleName(PortalId, SearchText)
+
+                Case Else
+                    users = UserController.GetUsersByProfileProperty(PortalId, False, SearchField, SearchText + "%", 0, 1000, total)
+            End Select
+            cboUsers.DataSource = users
+            cboUsers.DataBind()
+
+            LoadDefaultUsers()
+        End Sub
+#End Region
+
+
 #Region "Event Handlers"
 
         ''' <summary>
@@ -66,19 +152,15 @@ Namespace Apollo.DNN.Modules.IdentitySwitcher
         ''' <remarks></remarks>
         Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
             Try
-                If Not Page.IsPostBack Then
-                    cboUsers.DataSource = UserController.GetUsers(PortalId)
-                    cboUsers.DataTextField = "UserName"
-                    cboUsers.DataValueField = "UserId"
-                    cboUsers.DataBind()
+                If UseAjax AndAlso Framework.AJAX.IsInstalled Then
+                    Framework.AJAX.RegisterScriptManager()
 
-                    If IncludeHostUser Then
-                        Dim arHostUsers As ArrayList = UserController.GetUsers(Null.NullInteger)
-                        For Each hostUser As UserInfo In arHostUsers
-                            cboUsers.Items.Insert(0, New ListItem(hostUser.Username, hostUser.UserID))
-                        Next
-                    End If
-                    cboUsers.Items.Insert(0, New ListItem(Localization.GetString("Anonymous", LocalResourceFile), Null.NullInteger.ToString))
+                    Framework.AJAX.CreateUpdateProgressControl(Me.UpdatePanel1.ID)
+                End If
+                If Not Page.IsPostBack Then
+
+                    BindSearchOptions()
+                    LoadAllUsers()
 
                     If (Not IncludeHostUser) And UserInfo.IsSuperUser Then
                         cboUsers.SelectedIndex = 0
@@ -91,14 +173,15 @@ Namespace Apollo.DNN.Modules.IdentitySwitcher
             End Try
         End Sub
 
+        Protected Sub cmdSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdSearch.Click
+            If txtSearch.Text = "" Then
+                LoadAllUsers()
+            Else
+                Filter(txtSearch.Text, ddlSearchType.SelectedValue)
+            End If
+        End Sub
 
-        ''' <summary>
-        ''' performs logon for the selected user
-        ''' </summary>
-        ''' <param name="sender"></param>
-        ''' <param name="e"></param>
-        ''' <remarks></remarks>
-        Protected Sub cboUsers_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cboUsers.SelectedIndexChanged
+        Protected Sub cmdSwitch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdSwitch.Click
             If (cboUsers.SelectedValue <> Me.UserId) Then
                 If (cboUsers.SelectedValue = Null.NullInteger.ToString) Then
                     Response.Redirect(NavigateURL("LogOff"))
@@ -126,7 +209,9 @@ Namespace Apollo.DNN.Modules.IdentitySwitcher
         End Sub
 
 
+
 #End Region
+
 
     End Class
 
