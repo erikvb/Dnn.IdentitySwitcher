@@ -18,10 +18,9 @@
         </div>
         <div class="is_SwitchRow">
             <div class="is_SwitchLabel">
-                <asp:Label ID="lblSwitchToIdentity" runat="server" CssClass="subhead" resourcekey="SwitchToIdentity" /></div>
+                <asp:Label ID="lblSwitchToIdentity" runat="server" CssClass="SubHead" resourcekey="SwitchToIdentity" /></div>
             <div class="is_SwitchTask">
-                <asp:DropDownList ID="cboUsers" runat="server" DataTextField="UserName" DataValueField="UserId"
-                    CssClass="NormalTextBox is_SwitchMenu" />
+                <asp:DropDownList ID="cboUsers" runat="server" CssClass="NormalTextBox is_SwitchMenu" />
                 <DNN:CommandButton ID="cmdSwitch" runat="server" ResourceKey="cmdSwitch" ImageUrl="~/images/action_refresh.gif"
                     DisplayLink="false" CausesValidation="false" />
             </div>
