@@ -53,20 +53,29 @@ Namespace interApps.DNN.Modules.IdentitySwitcher
         ''' -----------------------------------------------------------------------------
         Public Overrides Sub LoadSettings()
             Try
-                If (Page.IsPostBack = False) Then
-                    If UserInfo.IsSuperUser Then
-                        If TabModuleSettings.Contains("includeHost") Then
-                            Me.cbIncludeHostUser.Checked = Boolean.Parse(TabModuleSettings("includeHost"))
-                        End If
-                    Else
-                        trHostSettings.Visible = False
-                    End If
-                    If TabModuleSettings.Contains("useAjax") Then
-                        Me.cbUseAjax.Checked = Boolean.Parse(TabModuleSettings("useAjax"))
-                    Else
-                        Me.cbUseAjax.Checked = True
-                    End If
-                End If
+				If (Page.IsPostBack = False) Then
+					rbSortBy.Items.Add(New ListItem(Localization.GetString("SortByDisplayName", LocalResourceFile), "DisplayName"))
+					rbSortBy.Items.Add(New ListItem(Localization.GetString("SortByUserName", LocalResourceFile), "UserName"))
+					rbSortBy.SelectedIndex = 0
+
+
+					If UserInfo.IsSuperUser Then
+						If TabModuleSettings.Contains("includeHost") Then
+							Me.cbIncludeHostUser.Checked = Boolean.Parse(TabModuleSettings("includeHost").ToString())
+						End If
+					Else
+						trHostSettings.Visible = False
+					End If
+					If TabModuleSettings.Contains("useAjax") Then
+						Me.cbUseAjax.Checked = Boolean.Parse(TabModuleSettings("useAjax").ToString())
+					Else
+						Me.cbUseAjax.Checked = True
+					End If
+
+					If TabModuleSettings.Contains("sortBy") Then
+						rbSortBy.SelectedValue = TabModuleSettings("sortBy").ToString()
+					End If
+				End If
             Catch exc As Exception           'Module failed to load
                 ProcessModuleLoadException(Me, exc)
             End Try
@@ -87,8 +96,10 @@ Namespace interApps.DNN.Modules.IdentitySwitcher
                 If UserInfo.IsSuperUser Then
                     objModules.UpdateTabModuleSetting(TabModuleId, "includeHost", Me.cbIncludeHostUser.Checked.ToString)
                 End If
-                objModules.UpdateTabModuleSetting(TabModuleId, "useAjax", Me.cbUseAjax.Checked.ToString)
-                ' refresh cache
+				objModules.UpdateTabModuleSetting(TabModuleId, "useAjax", Me.cbUseAjax.Checked.ToString)
+				objModules.UpdateTabModuleSetting(TabModuleId, "sortBy", rbSortBy.SelectedValue)
+
+				' refresh cache
                 ModuleController.SynchronizeModule(ModuleId)
             Catch exc As Exception           'Module failed to load
                 ProcessModuleLoadException(Me, exc)

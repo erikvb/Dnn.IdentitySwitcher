@@ -14,60 +14,78 @@ Option Explicit On
 
 Namespace interApps.DNN.Modules.IdentitySwitcher
 
-    Partial Public Class Settings
+	Partial Public Class Settings
 
-        '''<summary>
-        '''tblDesignTable control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents tblDesignTable As Global.System.Web.UI.HtmlControls.HtmlTable
+		'''<summary>
+		'''tblDesignTable control.
+		'''</summary>
+		'''<remarks>
+		'''Auto-generated field.
+		'''To modify move field declaration from designer file to code-behind file.
+		'''</remarks>
+		Protected WithEvents tblDesignTable As Global.System.Web.UI.HtmlControls.HtmlTable
 
-        '''<summary>
-        '''trHostSettings control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents trHostSettings As Global.System.Web.UI.HtmlControls.HtmlTableRow
+		'''<summary>
+		'''trHostSettings control.
+		'''</summary>
+		'''<remarks>
+		'''Auto-generated field.
+		'''To modify move field declaration from designer file to code-behind file.
+		'''</remarks>
+		Protected WithEvents trHostSettings As Global.System.Web.UI.HtmlControls.HtmlTableRow
 
-        '''<summary>
-        '''plIncludeHostUser control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents plIncludeHostUser As Global.DotNetNuke.UI.UserControls.LabelControl
+		'''<summary>
+		'''plIncludeHostUser control.
+		'''</summary>
+		'''<remarks>
+		'''Auto-generated field.
+		'''To modify move field declaration from designer file to code-behind file.
+		'''</remarks>
+		Protected WithEvents plIncludeHostUser As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''cbIncludeHostUser control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents cbIncludeHostUser As Global.System.Web.UI.WebControls.CheckBox
+		'''<summary>
+		'''cbIncludeHostUser control.
+		'''</summary>
+		'''<remarks>
+		'''Auto-generated field.
+		'''To modify move field declaration from designer file to code-behind file.
+		'''</remarks>
+		Protected WithEvents cbIncludeHostUser As Global.System.Web.UI.WebControls.CheckBox
 
-        '''<summary>
-        '''plUseAjax control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents plUseAjax As Global.DotNetNuke.UI.UserControls.LabelControl
+		'''<summary>
+		'''plUseAjax control.
+		'''</summary>
+		'''<remarks>
+		'''Auto-generated field.
+		'''To modify move field declaration from designer file to code-behind file.
+		'''</remarks>
+		Protected WithEvents plUseAjax As Global.System.Web.UI.UserControl
 
-        '''<summary>
-        '''cbUseAjax control.
-        '''</summary>
-        '''<remarks>
-        '''Auto-generated field.
-        '''To modify move field declaration from designer file to code-behind file.
-        '''</remarks>
-        Protected WithEvents cbUseAjax As Global.System.Web.UI.WebControls.CheckBox
-    End Class
+		'''<summary>
+		'''cbUseAjax control.
+		'''</summary>
+		'''<remarks>
+		'''Auto-generated field.
+		'''To modify move field declaration from designer file to code-behind file.
+		'''</remarks>
+		Protected WithEvents cbUseAjax As Global.System.Web.UI.WebControls.CheckBox
+
+		'''<summary>
+		'''plSortBy control.
+		'''</summary>
+		'''<remarks>
+		'''Auto-generated field.
+		'''To modify move field declaration from designer file to code-behind file.
+		'''</remarks>
+		Protected WithEvents plSortBy As Global.System.Web.UI.UserControl
+
+		'''<summary>
+		'''rbSortBy control.
+		'''</summary>
+		'''<remarks>
+		'''Auto-generated field.
+		'''To modify move field declaration from designer file to code-behind file.
+		'''</remarks>
+		Protected WithEvents rbSortBy As Global.System.Web.UI.WebControls.RadioButtonList
+	End Class
 End Namespace

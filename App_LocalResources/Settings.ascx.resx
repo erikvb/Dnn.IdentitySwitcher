@@ -132,4 +132,16 @@
   <data name="plUseAjax.Text" xml:space="preserve">
     <value>Use Ajax</value>
   </data>
+  <data name="plSortBy.Help" xml:space="preserve">
+    <value>You can specify if you want the list sorted by name or username</value>
+  </data>
+  <data name="plSortBy.Text" xml:space="preserve">
+    <value>Sort by:</value>
+  </data>
+  <data name="SorByUserName.Text" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="SortByDisplayName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
 </root>

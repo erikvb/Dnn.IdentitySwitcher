@@ -13,4 +13,11 @@
             <asp:CheckBox ID="cbUseAjax" runat="server" />
         </td>
     </tr>
+    <tr>
+        <td class="SubHead" width="150"><dnn:label id="plSortBy" runat="server" controlname="rbSortBy" suffix=":" /></td>
+        <td valign="bottom" >
+            <asp:RadioButtonList ID="rbSortBy" runat="server" CssClass="Normal" RepeatDirection="Horizontal" RepeatLayout="Flow">
+            </asp:RadioButtonList>
+        </td>
+    </tr>
 </table>
