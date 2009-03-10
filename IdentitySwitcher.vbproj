@@ -114,6 +114,9 @@
     <None Include="App_LocalResources\ViewIdentitySwitcher.ascx.resx" />
     <None Include="IdentitySwitcher.dnn" />
     <None Include="Installation\IdentitySwitcher_01.01.00_Install.zip" />
+    <None Include="Installation\interApps.IdentitySwitcher.02.00.00.Install.zip" />
+    <None Include="Installation\interApps.IdentitySwitcher.02.00.00.Source.zip" />
+    <None Include="Installation\Project.targets" />
     <None Include="obj\Project.targets" />
   </ItemGroup>
   <ItemGroup>
