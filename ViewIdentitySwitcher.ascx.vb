@@ -1,5 +1,5 @@
 '
-' Copyright (c) 2008, Erik van Ballegoij, Apollo Software 
+' Copyright (c) 2008 - 2009, interApps, Erik van Ballegoij, http://www.interapps.nl
 ' All rights reserved.
 '
 ' Redistribution and use in source and binary forms, with or without modification, are permitted provided that the 
