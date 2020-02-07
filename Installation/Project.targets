@@ -23,6 +23,10 @@
 		ModuleName: name of module
 		svn: path of svn repository (trunk)
   -->
+  
+  <!-- Removed the checks for the community tasks from here.  The import in the main project file supports a fallback path
+       which was not being checked in here. As a result the targets didn't execute, even though the community tasks had bee inported -->
+  
     <PropertyGroup>
         <CompanyName>interApps</CompanyName>
         <ModuleName>IdentitySwitcher</ModuleName>
@@ -37,7 +41,8 @@
     </ItemGroup>
 
     <!-- Execute Release Targets, this will only be executed if building a Release build -->
-    <Target Name="Release" Condition="'$(ConfigurationName)'=='Release' and Exists('$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets')">
+    <Target Name="Release" Condition="'$(ConfigurationName)'=='Release'">
+        <Message Text="Building install packages" Importance="high"></Message>
         <CallTarget Targets="SetVersionInfo" />
         <CallTarget Targets="RemoveZips" />
         <CallTarget Targets="ZipInstall" />
@@ -45,7 +50,7 @@
     </Target>
 
     <!-- Set the version numbers in DNN file and Assembly -->
-    <Target Name="SetVersionInfo" Condition="'$(ConfigurationName)'=='Release' and Exists('$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets')">
+    <Target Name="SetVersionInfo" Condition="'$(ConfigurationName)'=='Release'">
         <Message Text="MSBUILD: getting version from $(InstallDir)\version.txt ..." Importance="high"></Message>
         <!-- Obtain Version information from version.txt -->
         <Version BuildType="None" RevisionType="None" VersionFile="$(InstallDir)\version.txt" StartDate="12/1/2007">
@@ -119,6 +124,8 @@
         <!-- get files -->
         <CreateItem	Include="$(MSBuildProjectDirectory)\**"
                     	Exclude="$(MSBuildProjectDirectory)\**\.svn\**;
+						$(MSBuildProjectDirectory)\.git\**;
+						$(MSBuildProjectDirectory)\.vs\**;
 						$(MSBuildProjectDirectory)\_ReSharper.$(MSBuildProjectName)\**;
 						$(MSBuildProjectDirectory)\obj\**;
 						$(MSBuildProjectDirectory)\bin\**;
@@ -159,6 +166,8 @@
         <Delete Files="$(InstallDir)\resources.zip"></Delete>
         <!-- get files -->
         <CreateItem Exclude="$(MSBuildProjectDirectory)\**\.svn\**;
+						$(MSBuildProjectDirectory)\.git\**;
+						$(MSBuildProjectDirectory)\.vs\**;
 						$(MSBuildProjectDirectory)\_ReSharper.$(MSBuildProjectName)\**;
 						$(MSBuildProjectDirectory)\obj\**;
 						$(MSBuildProjectDirectory)\bin\**;
@@ -209,7 +218,7 @@
         <Delete Files="$(InstallDir)\resources.zip"></Delete>
     </Target>
 
-    <Target Name="CopyDeployFiles" Condition="Exists('$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets')">
+    <Target Name="CopyDeployFiles" Condition="">
         <!-- Copy assemblies and Debug Info to DNN Bin Dir -->
         <CreateItem Include="$(BinDir)\*.pdb;$(BinDir)\*.dll">
             <Output TaskParameter="Include" ItemName="Assemblies" />

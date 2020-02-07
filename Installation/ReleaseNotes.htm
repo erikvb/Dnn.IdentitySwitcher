@@ -8,18 +8,14 @@
     <h1>
         Releasenotes for IdentitySwitcher</h1>
     <h2>
-        Version 02.00.00</h2>
+        Version 03.00.00</h2>
     <ul>
-        <li>Added search based on rolename + profile properties, in order to make it easier 
-            to find users</li>
-        <li>Added sorting</li>
-        <li>Changed project setup from WSP to WAP</li>
-        <li>Added automated packageing through MSBuild Tasks</li>
+        <li>Updated to build on DNN 7.4.1.280.  Upgraded all the Obsolete API calls.  This allows it to run on DNN 9.</li>
+        <li>Updated to use NuGet to obtain the DNN dependency</li>
+        <li>Updated automated packaging through MSBuild Tasks.  It used to fail unless MSBuild Community Tasks were installed to a fiarly precise location.  The import allows a fallback location.  The build now works based on the fallback location.</li>
     </ul>
     <p>
         &nbsp;</p>
-    <p>
-        Special thanks goes to Vicenç Masanas for valuable additions to the code</p>
 
 </body>
 </html>
