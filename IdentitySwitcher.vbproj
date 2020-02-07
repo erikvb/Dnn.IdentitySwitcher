@@ -131,6 +131,7 @@
     <Content Include=".gitignore" />
     <None Include="App_LocalResources\Settings.ascx.resx" />
     <None Include="App_LocalResources\ViewIdentitySwitcher.ascx.resx" />
+    <Content Include="BuildInstallPackages.cmd" />
     <None Include="IdentitySwitcher.dnn" />
     <None Include="Installation\Project.targets" />
     <Content Include="web.config" />

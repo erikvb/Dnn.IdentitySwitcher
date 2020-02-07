@@ -7,7 +7,7 @@
 			<modulename>IdentitySwitcher</modulename>
 			<description>IdentitySwitcher is a module that allows for easy switching between different portal identities. This is extremely usefull during site development. NB:using this module on your own site might have security implications. Please think before you act!</description>
             <compatibleversions>04.06.02|(04.0[7-9]{1}).[0-9]{2}</compatibleversions>
-            <version>02.00.00</version>
+            <version>03.00.00</version>
             <resourcefile>resources.zip</resourcefile>
             <modules>
 				<module>
